@@ -43,11 +43,11 @@
 @media (max-width:370px){.hero.home-hero{height:285px;min-height:0;}}
 
 
-/* Desktop phone simulator, with independently scrollable screen. */
-.view-switch{position:fixed;right:18px;top:14px;z-index:100;display:flex;gap:5px;background:#fff;border:1px solid #eed4da;border-radius:14px;padding:5px;box-shadow:0 8px 24px #54223322}
+/* Fixed mobile experience: slim simulator on desktop, native mobile on phones. */
+.view-switch{display:none!important;position:fixed;right:18px;top:14px;z-index:100;display:flex;gap:5px;background:#fff;border:1px solid #eed4da;border-radius:14px;padding:5px;box-shadow:0 8px 24px #54223322}
 .view-switch button{border:0;border-radius:10px;background:transparent;color:#694854;font-size:13px;font-weight:750;padding:9px 12px}
 .view-switch button.active{background:#dd5878;color:white}
-.install-trigger{position:fixed;right:18px;top:67px;z-index:100;border:1px solid #eed4da;background:#fff;color:#694854;padding:9px 12px;border-radius:12px;font-weight:700;box-shadow:0 6px 18px #54223317}
+.install-trigger{display:none!important;position:fixed;right:18px;top:67px;z-index:100;border:1px solid #eed4da;background:#fff;color:#694854;padding:9px 12px;border-radius:12px;font-weight:700;box-shadow:0 6px 18px #54223317}
 .phone-frame{display:contents}
 @media(min-width:760px){
  body.force-mobile{background:#fff1f4}
@@ -72,7 +72,7 @@
  body.force-mobile .toast{position:fixed!important}
 }
 @media(max-width:759px){.view-switch{display:none}.install-trigger{right:10px;top:8px;padding:7px 9px;font-size:12px}}
-.brand-logo{width:43px;height:43px;object-fit:contain;border-radius:8px}.logo{font-style:normal!important;font-size:21px!important}</style></head><body><div class="view-switch" role="group" aria-label="版型切換"><button id="view-auto" type="button" onclick="setViewMode('auto')">自動版型</button><button id="view-mobile" type="button" onclick="setViewMode('mobile')">手機模式</button></div><button class="install-trigger" type="button" onclick="showInstallHelp()">加入主畫面</button><div class="phone-frame" id="phone-frame"><div class="phone-speaker" aria-hidden="true"></div><div class="app"><header><div class="logo" id="logo"></div><span class="muted">互動原型</span></header><main id="main"></main><nav class="nav" id="nav"></nav></div></div><div class="toast" id="toast"></div><script>
+.brand-logo{width:43px;height:43px;object-fit:contain;border-radius:8px}.logo{font-style:normal!important;font-size:21px!important}</style></head><body class="force-mobile"><div class="phone-frame" id="phone-frame"><div class="phone-speaker" aria-hidden="true"></div><div class="app"><header><div class="logo" id="logo"></div><span class="muted">互動原型</span></header><main id="main"></main><nav class="nav" id="nav"></nav></div></div><div class="toast" id="toast"></div><script>
 const paths={chef:'M6 13a5 5 0 0 1-.5-9.5A6 6 0 0 1 16 4a5 5 0 0 1 2 9M6 13v8h12v-8M6 17h12',home:'m3 10 9-7 9 7v11h-6v-7H9v7H3z',users:'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.87',store:'M3 10h18l-2-7H5zM5 10v11h14V10M9 21v-7h6v7',heart:'M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z',user:'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 21v-2a8 8 0 0 1 16 0v2',message:'M21 11.5a8.4 8.4 0 0 1-9 8.5 9 9 0 0 1-4-.9L3 21l1.9-5A9 9 0 1 1 21 11.5Z',calendar:'M3 5h18v16H3zM7 3v4M17 3v4M3 10h18',plus:'M12 5v14M5 12h14',check:'m5 12 4 4L19 6',arrow:'M5 12h14m-6-6 6 6-6 6',share:'M12 16V3m-5 5 5-5 5 5M4 14v7h16v-7',camera:'M3 7h18v14H3zM8 7l1-3h6l1 3M12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8',spark:'m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5z'};const icon=(n,s=21)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" aria-hidden="true"><path d="${paths[n]||paths.heart}"/></svg>`;
 const foods=[{id:'strawberry',name:'草莓鮮奶油蛋糕',img:'strawberry-cake.jpg'},{id:'brownie',name:'巧克力布朗尼',img:'brownie.jpg'},{id:'cupcakes',name:'繽紛杯子蛋糕',img:'cupcakes.jpg'},{id:'cookies',name:'手作造型餅乾',img:'cookies.jpg'}];const events=[{id:'rush',name:'BakeRush｜胡鬧烘焙大作戰',desc:'2–4 人分工合作，挑戰限時裝飾任務',date:'2026-12-05',img:'baking-together.jpg'},{id:'team',name:'三人默契大挑戰',desc:'用不同溝通方式完成團隊裝飾任務',date:'2026-12-12',img:'cookies.jpg'},{id:'battle',name:'BakeBattle｜創意裝飾競賽',desc:'使用相同材料，創作專屬甜點作品',date:'2026-12-19',img:'strawberry-cake.jpg'}];const samples=[{id:'s1',title:'第一次一起做草莓蛋糕',date:'2026-10-18',people:'小晴、阿哲、我',note:'大家輪流擠奶油，最後完成的蛋糕比想像中還漂亮！',img:'strawberry-cake.jpg'},{id:'s2',title:'週末的巧克力挑戰',date:'2026-10-25',people:'小安、家瑜、我',note:'我們比賽誰的裝飾最有創意，笑到停不下來。',img:'brownie.jpg'},{id:'s3',title:'杯子蛋糕派對',date:'2026-11-08',people:'阿辰、小米、我',note:'每個人都做了一款不同風格的杯子蛋糕。',img:'cupcakes.jpg'}];
 const key='bakeloop-unified-v3';
@@ -127,14 +127,7 @@ async function showInstallHelp(){
  const ios=/iPad|iPhone|iPod/.test(navigator.userAgent);
  alert(ios?'iPhone / iPad：請使用 Safari 開啟網站，點選分享按鈕，再選「加入主畫面」。':'Android：使用 Chrome 開啟網站，點選瀏覽器選單中的「安裝應用程式」或「加入主畫面」。電腦版可透過 Chrome 網址列的安裝圖示安裝。');
 }
-function setViewMode(mode){
- const mobile=mode==='mobile';
- document.body.classList.toggle('force-mobile',mobile);
- try{localStorage.setItem('bakeloop-view-mode',mobile?'mobile':'auto')}catch(e){}
- for(const [id,active] of [['view-auto',!mobile],['view-mobile',mobile]]){const el=document.getElementById(id);el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));}
- const main=document.getElementById('main');if(main)main.scrollTop=0;
-}
-try{setViewMode(localStorage.getItem('bakeloop-view-mode')==='mobile'?'mobile':'auto')}catch(e){setViewMode('auto')}
+
 if('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 }
